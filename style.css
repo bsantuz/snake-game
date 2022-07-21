@@ -1,0 +1,46 @@
+#tabela {
+  border: 1px;
+  width: 200px;
+  height: 200px;
+  background-color: #1b1924;
+}
+
+#tabela td {
+  border-radius: 5%;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+          transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#rodape {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 200px;
+  background-color: #121018;
+  color: white;
+}
+
+#rodape p {
+  margin-left: 5%;
+}
+
+#rodape button {
+  margin-right: 5%;
+  border: none;
+  background-color: transparent;
+  color: #f7d517;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+
+#rodape button:hover {
+  -webkit-transform: scale(1.5, 1.5);
+          transform: scale(1.5, 1.5);
+}
+/*# sourceMappingURL=style.css.map */

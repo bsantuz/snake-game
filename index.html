@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <table id="tabela"></table>
+    <div id="rodape">   
+        <p id="score">score:0</p>    
+        <button onclick="start()">start</button>
+    </div>
+
+    
+
+    <script>
+
+        var tabela = ""
+        var cobra = [[4,4]]
+        var temp = [0,1]
+        var _apple
+        var score = 0
+
+        for (x = 0; x < 10; x++) {
+
+            tabela += "<tr>"
+
+            for (y = 0; y < 10; y++) {
+
+                tabela += "<td id = '"+x+","+y+"'></td>"
+            }
+            tabela += "</tr>"
+        }
+
+        document.getElementById("tabela").innerHTML = tabela
+
+        function move(){
+        
+            for (let index = 0; index < cobra.length; index++) {
+                document.getElementById(cobra[index][0]+","+cobra[index][1]).style.backgroundColor = "transparent" 
+            }
+
+            var pos_antiga = [cobra[0][0],cobra[0][1]]
+            var transicao
+
+            cobra[0][0] += temp[0]
+            cobra[0][1] += temp[1]
+
+            if( _apple[0] == cobra[0][0] && _apple[1] == cobra[0][1]){
+
+                score += 10
+                document.getElementById("score").innerHTML = "score: "+score
+
+                console.log("pegou a maçã")
+
+                cobra.push(cobra[(cobra.length - 1)])
+                document.getElementById(_apple[0]+","+_apple[1]).style.backgroundColor = "transparent"
+
+                apple()
+            }
+            
+
+            if (cobra[0][0] > 9) {cobra[0][0] = 0}
+            else if (cobra[0][0] < 0){cobra[0][0] = 9}
+            
+            if (cobra[0][1] > 9) {cobra[0][1] = 0}
+            else if (cobra[0][1] < 0){cobra[0][1] = 9}
+
+            for (let index = 0; index < cobra.length; index++) {
+                
+                if(index != 0)
+                {
+                    transicao = [cobra[index][0],cobra[index][1]]
+                    cobra[index] = pos_antiga
+                    pos_antiga = transicao
+                }
+            }
+
+            for (let index = 0; index < cobra.length; index++) {
+                document.getElementById(cobra[index][0]+","+cobra[index][1]).style.backgroundColor = "rgb(17, 100, 240)"
+            }
+
+            for(var i = 1; i< cobra.length ; i++){
+
+                if(cobra[0][0] == cobra[i][0] && cobra[0][1] == cobra[i][1]){
+
+                    stop()
+                    break
+                }
+            }
+
+            document.getElementById(_apple[0]+","+_apple[1]).style.backgroundColor = "red"
+        }
+
+        window.addEventListener('keyup', function(e) {
+
+            var codigoTecla = e.which || e.keyCode || 0;
+            
+            switch (codigoTecla) {
+
+                // D ou direita
+                case 68:
+                    if (temp[1] != -1) {temp = [0,1];}
+                    break;
+
+                // A ou esqueda
+                case 65:
+                if (temp[1] != 1){temp = [0,-1];}
+                    break;
+
+                // W ou cima
+                case 87:
+                if (temp[0] != 1){temp = [-1,0];}
+                    break;
+
+                // s ou baixo
+                case 83:
+                if (temp[0] != -1){temp = [1,0];}
+                    break;
+            }
+        })
+
+        function apple(){
+
+            _apple = [parseInt(Math.random()*9),parseInt(Math.random()*9)];
+            console.log(_apple)
+
+            for(var i = 0; i< cobra.length ; i++){
+                if(_apple[0] == cobra[i][0] && _apple[1] == cobra[i][1]){
+
+                    _apple = [parseInt(Math.random()*9),parseInt(Math.random()*9)];
+                    console.log(_apple)
+                    console.log(i)
+                    i = 0
+                    console.log(i)
+                }
+            }
+        }
+
+        var startime
+
+        function start(){
+
+            stop()
+
+            cobra = [[4,4]]
+            temp = [0,1]
+            _apple = undefined
+
+            for(X = 0; X < 10; X++){
+                for(Y = 0; Y < 10; Y++){
+
+                    document.getElementById(X+","+Y).style.backgroundColor = "transparent"
+                }
+            }
+
+            startime = setInterval(move, 250)
+
+            apple()
+        }
+
+        function stop() {clearInterval(startime)}
+
+
+    </script>
+</body>
+</html>
