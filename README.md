@@ -1,5 +1,5 @@
 # snake-game
 
-movimento pelas telcas: W,A,S,D
+movimento pelas tecLas: W,A,S,D
 
 link: https://bsantuz.github.io/snake-game/
