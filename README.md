@@ -44,7 +44,7 @@ $ index.html ou server live(plugin do vscode)
          
 
 ### Tecnologias utilizadas
-
+* front end basic(html, css, js)
 
 ### Autor
 Feito com ❤️ por Bruno Santuz 👋🏽 Entre em contato!
