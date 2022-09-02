@@ -15,7 +15,7 @@
 
 ### funcionalidades
 
-####!movimento pelas tecLas: W,A,S,D!
+----------!movimento pelas tecLas: W,A,S,D!----------
 
 - [x] matriz usando tabela
 - [x] Movimentação da cobra
